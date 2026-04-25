@@ -1,0 +1,7 @@
+target/
+**/target/
+*.db
+*.sqlite
+.env
+.DS_Store
+node_modules/
