@@ -1,0 +1,151 @@
+{
+  "address": "6BWzBZHkuVgHew2mo4Uqf87csVVXJcbt2QZzreMUifQK",
+  "metadata": {
+    "name": "banking_solana_program",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "approve_transfer",
+      "discriminator": [
+        198,
+        217,
+        247,
+        150,
+        208,
+        60,
+        169,
+        244
+      ],
+      "accounts": [
+        {
+          "name": "transfer_request",
+          "writable": true
+        },
+        {
+          "name": "manager",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "submit_transfer",
+      "discriminator": [
+        131,
+        57,
+        253,
+        234,
+        98,
+        101,
+        37,
+        157
+      ],
+      "accounts": [
+        {
+          "name": "transfer_request",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "from_user_id",
+          "type": "u64"
+        },
+        {
+          "name": "to_user_id",
+          "type": "u64"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "TransferRequest",
+      "discriminator": [
+        200,
+        121,
+        88,
+        202,
+        12,
+        160,
+        237,
+        12
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidAmount",
+      "msg": "Amount must be greater than zero"
+    },
+    {
+      "code": 6001,
+      "name": "AlreadyApproved",
+      "msg": "Transfer already approved"
+    },
+    {
+      "code": 6002,
+      "name": "AlreadyCompleted",
+      "msg": "Transfer already completed"
+    }
+  ],
+  "types": [
+    {
+      "name": "TransferRequest",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "requested_by",
+            "type": "pubkey"
+          },
+          {
+            "name": "from_user_id",
+            "type": "u64"
+          },
+          {
+            "name": "to_user_id",
+            "type": "u64"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "approved",
+            "type": "bool"
+          },
+          {
+            "name": "completed",
+            "type": "bool"
+          },
+          {
+            "name": "approved_by",
+            "type": {
+              "option": "pubkey"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
